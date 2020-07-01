@@ -1,0 +1,50 @@
+Index: src/main/java/ru/javaops/bootjava/restaurantvoting/model/BaseEntity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/ru/javaops/bootjava/restaurantvoting/model/BaseEntity.java	(date 1567794209000)
++++ src/main/java/ru/javaops/bootjava/restaurantvoting/model/BaseEntity.java	(date 1567876213253)
+@@ -1,5 +1,6 @@
+ package ru.javaops.bootjava.restaurantvoting.model;
+ 
++import com.fasterxml.jackson.annotation.JsonIgnore;
+ import lombok.*;
+ import org.springframework.data.domain.Persistable;
+ import org.springframework.data.util.ProxyUtils;
+@@ -22,11 +23,13 @@
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+     protected Integer id;
+ 
++    // doesn't work for hibernate lazy proxy
+     public int id() {
+         Assert.notNull(id, "Entity must has id");
+         return id;
+     }
+ 
++    @JsonIgnore
+     @Override
+     public boolean isNew() {
+         return id == null;
+Index: src/main/resources/application.yaml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/resources/application.yaml	(date 1567794209000)
++++ src/main/resources/application.yaml	(date 1567874935786)
+@@ -31,4 +31,11 @@
+   data.rest:
+     #  https://docs.spring.io/spring-data/rest/docs/current/reference/html/#getting-started.basic-settings
+     basePath: /api
+-    returnBodyOnCreate: true
+\ No newline at end of file
++    returnBodyOnCreate: true
++
++  # Jackson Serialization Issue Resolver
++#  jackson:
++#    visibility.field: any
++#    visibility.getter: none
++#    visibility.setter: none
++#    visibility.is-getter: none
+\ No newline at end of file
