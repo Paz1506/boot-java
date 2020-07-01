@@ -1,0 +1,47 @@
+Index: src/main/java/ru/javaops/bootjava/restaurantvoting/model/Role.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/ru/javaops/bootjava/restaurantvoting/model/Role.java	(date 1549380927510)
++++ src/main/java/ru/javaops/bootjava/restaurantvoting/model/Role.java	(date 1549380927510)
+@@ -0,0 +1,6 @@
++package ru.javaops.bootjava.restaurantvoting.model;
++
++public enum Role {
++    ROLE_USER,
++    ROLE_ADMIN
++}
+\ No newline at end of file
+Index: src/main/java/ru/javaops/bootjava/restaurantvoting/model/User.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/ru/javaops/bootjava/restaurantvoting/model/User.java	(date 1549401550805)
++++ src/main/java/ru/javaops/bootjava/restaurantvoting/model/User.java	(date 1549401550805)
+@@ -0,0 +1,23 @@
++package ru.javaops.bootjava.restaurantvoting.model;
++
++import lombok.AllArgsConstructor;
++import lombok.Data;
++import lombok.NoArgsConstructor;
++
++import java.util.Set;
++
++@Data
++@NoArgsConstructor
++@AllArgsConstructor
++public class User {
++
++    private String email;
++
++    private String firstName;
++
++    private String lastName;
++
++    private String password;
++
++    private Set<Role> roles;
++}
+\ No newline at end of file
