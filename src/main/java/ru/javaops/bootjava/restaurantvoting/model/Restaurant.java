@@ -24,7 +24,4 @@ public class Restaurant extends BaseEntity {
     @NotNull
     @Size(min = 3, max = 255)
     private String name;
-
-
-
 }

@@ -14,7 +14,7 @@ import static javax.persistence.FetchType.LAZY;
  * @author Pavel Zaytsev
  */
 @Entity
-@Table(name = "menu", uniqueConstraints = {@UniqueConstraint(columnNames = {"offer_date", "name"})})
+@Table(name = "menu")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,7 +22,7 @@ import static javax.persistence.FetchType.LAZY;
 @ToString(callSuper = true)
 public class Menu extends BaseEntity {
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     @NotNull
     @Size(min = 3, max = 255)
     private String name;
@@ -32,11 +32,4 @@ public class Menu extends BaseEntity {
                joinColumns = @JoinColumn(name = "menu_id"),
                inverseJoinColumns = @JoinColumn(name = "dish_id"))
     private List<Dish> dishes;
-
-    @ManyToOne(fetch = LAZY, optional = false)
-    @JoinColumn(name = "restaurant_id", nullable = false)
-    private Restaurant restaurant;
-
-    @Column(name = "offer_date", nullable = false)
-    private Date offerDate;
 }
