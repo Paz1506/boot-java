@@ -7,7 +7,6 @@ import org.springframework.data.util.ProxyUtils;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @MappedSuperclass
@@ -28,9 +27,8 @@ public abstract class BaseEntity implements Persistable<Integer> {
     @Column(name = "state", nullable = false, columnDefinition = "VARCHAR(255) DEFAULT 'ACTIVE'")
     private State state = State.ACTIVE;
 
-    @NotNull
-    @Column(name = "create_date", nullable = false, updatable = false, columnDefinition = "timestamp default NOW()")
-    private Date createDate;
+    @Column(name = "create_date", updatable = false, columnDefinition = "timestamp default NOW()")
+    private Date createDate = new Date();
 
     // doesn't work for hibernate lazy proxy
     public int id() {

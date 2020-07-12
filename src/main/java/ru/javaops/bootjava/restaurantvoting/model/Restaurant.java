@@ -20,8 +20,8 @@ import javax.validation.constraints.Size;
 @ToString(callSuper = true)
 public class Restaurant extends BaseEntity {
 
-    @Column(name = "name", nullable = false, unique = true)
+    @Column(name = "restaurant_name", nullable = false, unique = true)
     @NotNull
     @Size(min = 3, max = 255)
-    private String name;
+    private String restaurantName;
 }

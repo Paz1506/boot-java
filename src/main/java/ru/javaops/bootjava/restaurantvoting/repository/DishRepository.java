@@ -16,8 +16,12 @@ import java.util.Set;
 public interface DishRepository extends JpaRepository<Dish, Integer> {
 
     @Transactional(readOnly = true)
-    @RestResource(rel = "by-name", path = "by-name")
-    Optional<Dish> findByNameContaining(String name);
+    @RestResource(rel = "by-dishName", path = "by-dishName")
+    Set<Dish> findByDishNameContaining(String dishName);
+
+    @Transactional(readOnly = true)
+    @RestResource(rel = "by-menuId", path = "by-menuId")
+    Set<Dish> findByMenuId(Integer menuId);
 
     @Transactional(readOnly = true)
     @RestResource(rel = "by-price-interval", path = "by-price-interval")

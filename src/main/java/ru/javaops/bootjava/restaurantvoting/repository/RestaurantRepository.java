@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.javaops.bootjava.restaurantvoting.model.Restaurant;
 
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * @author Pavel Zaytsev
@@ -14,6 +15,6 @@ import java.util.Optional;
 public interface RestaurantRepository extends JpaRepository<Restaurant, Integer> {
 
     @Transactional(readOnly = true)
-    @RestResource(rel = "by-name", path = "by-name")
-    Optional<Restaurant> findByNameContaining(String name);
+    @RestResource(rel = "by-restaurant-name", path = "by-restaurant-name")
+    Set<Restaurant> findByRestaurantNameContaining(String restaurantName);
 }
